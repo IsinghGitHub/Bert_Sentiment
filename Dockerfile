@@ -15,5 +15,9 @@ RUN conda create -y -n ml python=3.7
 
 COPY . src/
 RUN /bin/bash -c "cd src \
-    && source activate ml \
-    && pip install -r requirements.txt"
+    && source activate ml"
+    
+
+COPY requirements.txt /tmp/
+RUN pip install --requirement /tmp/requirements.txt
+COPY . /tmp/
